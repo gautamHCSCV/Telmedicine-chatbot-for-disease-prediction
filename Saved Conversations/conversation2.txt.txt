@@ -1,0 +1,25 @@
+Your Name 
+						->Aman
+hello  Aman
+Enter the symptom you are experiencing  
+						->itching
+searches related to input: 
+0 ) itching
+1 ) internal_itching
+Select the one you meant (0 - 1):  1
+Okay. From how many days ? : 4
+Are you experiencing any 
+vomiting ? : no
+indigestion ? : no
+loss_of_appetite ? : yes
+abdominal_pain ? : no
+passage_of_gases ? : no
+internal_itching ? : yes
+It might not be that bad but you should take precautions.
+You may have  Peptic ulcer diseae
+Peptic ulcer disease (PUD) is a break in the inner lining of the stomach, the first part of the small intestine, or sometimes the lower esophagus. An ulcer in the stomach is called a gastric ulcer, while one in the first part of the intestines is a duodenal ulcer.
+Take following measures : 
+1 ) avoid fatty spicy food
+2 ) consume probiotic food
+3 ) eliminate milk
+4 ) limit alcohol

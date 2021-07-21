@@ -1,0 +1,25 @@
+Your Name 
+						->Haider
+hello  Haider
+Enter the symptom you are experiencing  
+						->weight_loss
+searches related to input: 
+0 ) weight_loss
+Okay. From how many days ? : 15
+Are you experiencing any 
+itching ? : no
+vomiting ? : yes
+fatigue ? : yes
+weight_loss ? : yes
+high_fever ? : no
+yellowish_skin ? : no
+dark_urine ? : yes
+abdominal_pain ? : yes
+You should take the consultation from doctor. 
+You may have  Jaundice
+Yellow staining of the skin and sclerae (the whites of the eyes) by abnormally high blood levels of the bile pigment bilirubin. The yellowing extends to other tissues and body fluids. Jaundice was once called the "morbus regius" (the regal disease) in the belief that only the touch of a king could cure it
+Take following measures : 
+1 ) drink plenty of water
+2 ) consume milk thistle
+3 ) eat fruits and high fiberous food
+4 ) medication
