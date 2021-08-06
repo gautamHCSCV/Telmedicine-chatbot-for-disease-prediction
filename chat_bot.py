@@ -10,7 +10,7 @@ import csv
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-
+#Loading files
 training = pd.read_csv('Training.csv')
 testing= pd.read_csv('Testing.csv')
 cols= training.columns
@@ -33,7 +33,7 @@ testx    = testing[cols]
 testy    = testing['prognosis']  
 testy    = le.transform(testy)
 
-
+#Training decision tree
 clf1  = DecisionTreeClassifier()
 clf = clf1.fit(x_train,y_train)
 # print(clf.score(x_train,y_train))
@@ -42,7 +42,7 @@ scores = cross_val_score(clf, x_test, y_test, cv=3)
 # print (scores)
 print (scores.mean())
 
-
+# We have also trained svc model for more accuracy but not used it in chatbot
 model=SVC()
 model.fit(x_train,y_train)
 print("for svm: ")
@@ -52,6 +52,7 @@ importances = clf.feature_importances_
 indices = np.argsort(importances)[::-1]
 features = cols
 
+# The function which implements audio. We only need to provide flash strings as argument and the model can speak those texts.
 def readn(nstr):
     engine = pyttsx3.init()
 
@@ -62,15 +63,16 @@ def readn(nstr):
     engine.runAndWait()
     engine.stop()
 
-
+# Dictionaries to store aspects of different csv files.
 severityDictionary=dict()
 description_list = dict()
 precautionDictionary=dict()
-
 symptoms_dict = {}
 
 for index, symptom in enumerate(x):
        symptoms_dict[symptom] = index
+        
+# calculation of condition based on severity and no. of days of disease
 def calc_condition(exp,days):
     sum=0
     for item in exp:
@@ -80,7 +82,7 @@ def calc_condition(exp,days):
     else:
         print("It might not be that bad but you should take precautions.")
 
-
+# Simply provides the discription of disease from the csv file.
 def getDescription():
     global description_list
     with open('symptom_Description.csv') as csv_file:
@@ -92,7 +94,7 @@ def getDescription():
 
 
 
-
+# Updates the severity using the csv file
 def getSeverityDict():
     global severityDictionary
     with open('symptom_severity.csv') as csv_file:
@@ -126,6 +128,7 @@ def getInfo():
     print("hello ",name)
     readn(f"hello {name}")
 
+# Check if such a symptom is present
 def check_pattern(dis_list,inp):
     import re
     pred_list=[]
@@ -142,6 +145,8 @@ def check_pattern(dis_list,inp):
         return 1,pred_list
     else:
         return ptr,item
+
+# Getting the second prediction
 def sec_predict(symptoms_exp):
     df = pd.read_csv('Training.csv')
     X = df.iloc[:, :-1]
@@ -171,6 +176,10 @@ def print_disease(node):
     # print(val)
     disease = le.inverse_transform(val[0])
     return disease
+
+# The function that takes tree and it's feature names as arguments. It provides a condition, if yes, move to left subtree, if no, move to right subtree.
+# The function breakes when it encounters a leaf node. The leaf node is the disease.
+# It is recommmended to use underscores in place of spaces while spacifying symptoms. Tree is not perfect and may give error at times.
 def tree_to_code(tree, feature_names):
     tree_ = tree.tree_
     # print(tree_)
